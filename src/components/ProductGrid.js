@@ -4,16 +4,20 @@ import "./ProductGrid.css";
 
 function ProductGrid({ searchText }) {
   const [products, setProducts] = useState([]);
+   const [loading, setLoading] = useState(true);
   
   useEffect(() => {
     fetch("https://697eee1cd1548030ab64c019.mockapi.io/products")
       .then(res => res.json())
-      .then(data => setProducts(data));
+      .then(data => { setProducts(data); setLoading(false); });
   }, []);
    const filteredProducts = products.filter((product) =>
     product.name.toLowerCase().includes(searchText.trim().toLowerCase())
   );
   
+  if (loading) {
+    return <p style={{ padding: 20 }}>Loading products...</p>;
+  }
 
   return (
     <>

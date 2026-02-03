@@ -15,7 +15,7 @@ function App() {
 }, [searchText]);
 
   return (
-    <BrowserRouter>
+    <BrowserRouter basename="/react-demo">
       <>
       <Navbar onSearch={setSearchText}/>      
       <CartIcon/>
